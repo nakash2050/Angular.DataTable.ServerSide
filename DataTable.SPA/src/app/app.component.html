@@ -1,0 +1,41 @@
+<br>
+<div class="container">
+  <h1>Employees</h1>
+  <br>
+  <hr>
+  <div>
+    <div class="form-group">
+      <label for="empName" class="control-label">Name</label>
+      <input type="text" class="form-control" id="empName" name="empName" [(ngModel)]="empName">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="search()">Search</button>
+  </div>  
+  <br>  
+  <div [class.ngHide]="searchCriteria.isPageLoad">
+    <table datatable class="table table-striped" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>Name</td>
+          <td>Email</td>
+          <td>Company</td>
+          <td>Contact Number</td>
+        </tr>
+      </thead>
+      <tbody *ngIf="employees != null || employees?.length != 0">
+        <tr *ngFor="let emp of employees">
+          <td style="width:2%">{{emp.EmployeeID}}</td>
+          <td style="width:10%">{{emp.Name}}</td>
+          <td style="width:30%">{{emp.Email}}</td>
+          <td style="width:40%">{{emp.Company}}</td>
+          <td style="width:18%">{{emp.ContactNumber}}</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="employees == null || employees?.length == 0">
+        <tr>
+          <td colspan="5" class="no-data-available">No data!</td>
+        </tr>
+      <tbody>
+    </table>
+  </div>
+</div>
